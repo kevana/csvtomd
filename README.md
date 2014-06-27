@@ -33,7 +33,8 @@ Tyrion      |  Lannister  |  King's Landing     |  House Lannister
 
 ## Raw Output
 
-Command: `./csvtomd.py thrones.csv`
+Command: `./csvtomd.py thrones.csv`  
+With pipes: `cat thrones.csv | ./csvtomd.py -s`
 
 ```
 First Name  |  Last Name  |  Location           |  Allegiance
@@ -64,7 +65,7 @@ Python 3. Tested on Python 3.4.1.
 Command: `./csvtomd.py --help`
 
 ```
-usage: csvtomd.py [-h] [-n] [-p PADDING] csv_file [csv_file ...]
+usage: csvtomd.py [-h] [-s] [-n] [-p PADDING] csv_file [csv_file ...]
 
 Read one or more CSV files and output their contents in the form of Markdown
 tables.
@@ -74,6 +75,7 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
+  -s, --stdin           Accept input from STDIN instead of files.
   -n, --no-filenames    Don't display filenames when outputting multiple
                         Markdown tables.
   -p PADDING, --padding PADDING
