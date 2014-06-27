@@ -97,7 +97,7 @@ parser = Parser(
     description='Read one or more CSV files and output their contents in the '
                 'form of Markdown tables.')
 parser.add_argument('files', metavar='csv_file', type=str,
-                    nargs='+', help='One or more CSV files to be converted')
+                    nargs='*', help='One or more CSV files to be converted')
 parser.add_argument('-s', '--stdin', action='store_true',
                     help="Accept input from STDIN instead of files."
                          "Must be the last flag in the options list.")
@@ -113,6 +113,8 @@ args = parser.parse_args()
 first = True
 # Ignore errors in other arguments if -s/--stdin was set
 if not args.stdin:
+    if not args.files:
+        parser.error('the following arguments are required: csv_file')
     parser.handle_error()
 
 if args.stdin:
@@ -136,14 +138,12 @@ else:
         # Read the CSV files
         with open(filename, 'rU') as f:
             csv = reader(f)
-            print(csv)
             print('------------')
             table = [row for row in csv]
-            print(table)
         # Print filename for each table if --no-filenames wasn't passed and more
         # than one CSV was provided
         file_count = len(args.files)
         if args.show_filenames and file_count > 1:
             print(filename + '\n')
         # Generate and print Markdown table
-        print(md_table(csv, padding=args.padding))
+        print(md_table(table, padding=args.padding))
