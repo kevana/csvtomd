@@ -124,6 +124,7 @@ if args.stdin:
     if csv[-1][0] == '\x04':
         csv = csv[:-1]
     try:
+        print('------------')
         print(md_table(csv, padding=args.padding))
     except:
         parser.handle_error()
