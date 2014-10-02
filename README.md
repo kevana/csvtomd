@@ -86,7 +86,7 @@ Doesn't require any external packages, so it should be platform-agnostic.
 Command: `csvtomd --help`
 
 ```
-usage: csvtomd.py [-h] [-n] [-p PADDING] csv_file [csv_file ...]
+usage: csvtomd.py [-h] [-s] [-n] [-p PADDING] csv_file [csv_file ...]
 
 Read one or more CSV files and output their contents in the form of Markdown
 tables.
@@ -96,6 +96,7 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
+  -s, --stdin           Accept input from STDIN instead of files.
   -n, --no-filenames    Don't display filenames when outputting multiple
                         Markdown tables.
   -p PADDING, --padding PADDING
